@@ -44,11 +44,12 @@ class ksh_information(QWidget):
          # 탭 위젯 생성
         tab1 = QWidget()
         tab2 = QWidget()
+        tab3 = QWidget()
 
         tabs = QTabWidget()
-        tabs.addTab(tab1, 'Tab1')
-        tabs.addTab(tab2, 'Tab2')
-
+        tabs.addTab(tab1, 'PRD')
+        tabs.addTab(tab2, 'RCD')
+        tabs.addTab(tab3, 'PHC')
 
         vbox = QVBoxLayout()
         vbox.addWidget(tabs)
@@ -60,40 +61,49 @@ class ksh_information(QWidget):
     
     #그룹박스 - 흙막이 ------------------------------------------------------------------------    
     def Group2(self):
-        groupbox = QGroupBox('부재')
-
+        groupbox = QGroupBox('지형')
+        
+         # 탭 위젯 생성
         tab1 = QWidget()
         tab2 = QWidget()
+        tab3 = QWidget()
+        tab4 = QWidget()
 
         tabs = QTabWidget()
-        tabs.addTab(tab1, 'Tab1')
-        tabs.addTab(tab2, 'Tab2')
-        
+        tabs.addTab(tab1, 'CIP')
+        tabs.addTab(tab2, 'PILE')
+        tabs.addTab(tab3, 'H-PILE')
+        tabs.addTab(tab4, '슬러리월')
+
         vbox = QVBoxLayout()
         vbox.addWidget(tabs)
 
         groupbox.setLayout(vbox)  # 그룹박스에 레이아웃 설정
         
-
         return groupbox
+    
 
     #그룹박스 - 버팀대 ------------------------------------------------------------------------    
     def Group3(self):
-        groupbox = QGroupBox('부재')
-
+        groupbox = QGroupBox('지형')
+        
+         # 탭 위젯 생성
         tab1 = QWidget()
         tab2 = QWidget()
+        tab3 = QWidget()
+        tab4 = QWidget()
 
         tabs = QTabWidget()
-        tabs.addTab(tab1, 'Tab1')
-        tabs.addTab(tab2, 'Tab2')
-        
+        tabs.addTab(tab1, '센터파일')
+        tabs.addTab(tab2, '어스앵커')
+        tabs.addTab(tab3, '스트러트')
+        tabs.addTab(tab4, '띠장')
+
         vbox = QVBoxLayout()
         vbox.addWidget(tabs)
 
         groupbox.setLayout(vbox)  # 그룹박스에 레이아웃 설정
         
-
         return groupbox
 
 if __name__ == '__main__':

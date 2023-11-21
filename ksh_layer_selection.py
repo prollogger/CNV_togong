@@ -38,39 +38,94 @@ class ksh_layer_selection(QWidget):
         vbox.addWidget(self.Group2())
 
     
-    #그룹박스 - 지형    
+    #그룹박스 - 지형 --------------------------------------------------------------------------   
     def Group1(self):
         groupbox = QGroupBox('지형')
         
-         # 탭 위젯 생성
-        tab1 = QWidget()
-        tab2 = QWidget()
-
-        tabs = QTabWidget()
-        tabs.addTab(tab1, 'Tab1')
-        tabs.addTab(tab2, 'Tab2')
-
-
         vbox = QVBoxLayout()
+
+        # 탭 위젯 생성
+        tabs = QTabWidget()
+        tabs.addTab(QWidget(), '현황')
+        tabs.addTab(QWidget(), '터파기')  # 빈 탭 추가
+
+        # 테이블 위젯 생성
+        table = QTableWidget()
+        table.setRowCount(8)
+        table.setColumnCount(2)
+
+        table.setHorizontalHeaderItem(0, QTableWidgetItem("부재"))
+        table.setHorizontalHeaderItem(1, QTableWidgetItem("레이어선택"))
+
+        # 첫 번째 열에 콤보박스 추가
+        for i in range(table.rowCount()):
+            combo = QComboBox()
+            combo.addItems(["Option 1", "Option 2", "Option 3"])
+            table.setCellWidget(i, 1, combo)
+            
+        # 행의 헤더 숨기기
+        header = table.verticalHeader()
+        header.hide()       
+
+        # 테이블 열 너비 조정
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) 
+
+        # 탭에 테이블 추가
+        tab1 = tabs.widget(0)
+        tab1_layout = QVBoxLayout()
+        tab1_layout.addWidget(table)
+        tab1.setLayout(tab1_layout)
+
         vbox.addWidget(tabs)
 
         groupbox.setLayout(vbox)  # 그룹박스에 레이아웃 설정
         
         return groupbox
     
-    
-    #그룹박스 - 부재  
+    #그룹박스 - 부재 ------------------------------------------------------------------ 
     def Group2(self):
         groupbox = QGroupBox('부재')
+        
+        vbox = QVBoxLayout()
 
         tab1 = QWidget()
         tab2 = QWidget()
+        tab3 = QWidget()
+        tab4 = QWidget()
 
         tabs = QTabWidget()
-        tabs.addTab(tab1, 'Tab1')
-        tabs.addTab(tab2, 'Tab2')
+        tabs.addTab(tab1, '파일')
+        tabs.addTab(tab2, '흙막이')
+        tabs.addTab(tab3, '버팀대')
+        tabs.addTab(tab4, '복공판')
         
-        vbox = QVBoxLayout()
+        # 테이블 위젯 생성
+        table = QTableWidget()
+        table.setRowCount(8)
+        table.setColumnCount(2)
+
+        table.setHorizontalHeaderItem(0, QTableWidgetItem("부재"))
+        table.setHorizontalHeaderItem(1, QTableWidgetItem("레이어선택"))
+
+        # 첫 번째 열에 콤보박스 추가
+        for i in range(table.rowCount()):
+            combo = QComboBox()
+            combo.addItems(["Option 1", "Option 2", "Option 3"])
+            table.setCellWidget(i, 1, combo)
+            
+        # 행의 헤더 숨기기
+        header = table.verticalHeader()
+        header.hide()       
+
+        # 테이블 열 너비 조정
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) 
+
+        # 탭에 테이블 추가
+        tab1 = tabs.widget(0)
+        tab1_layout = QVBoxLayout()
+        tab1_layout.addWidget(table)
+        tab1.setLayout(tab1_layout)
+        
         vbox.addWidget(tabs)
 
         groupbox.setLayout(vbox)  # 그룹박스에 레이아웃 설정

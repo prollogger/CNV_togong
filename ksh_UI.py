@@ -24,19 +24,19 @@ class MainWindow(QMainWindow):
         
         self.view_layer_selection = ksh_layer_selection() #레이어 지정
         self.view_layer_selection.setMinimumWidth(350)
-        self.view_layer_selection.setMaximumWidth(400)
+        self.view_layer_selection.setMaximumWidth(800)
 
         self.ksh_report_result = ksh_report_result() #보링점
         self.ksh_report_result.setMinimumWidth(350)
-        self.ksh_report_result.setMaximumWidth(400)
+        self.ksh_report_result.setMaximumWidth(800)
 
         self.ksh_height_setting = ksh_height_setting() #높이 설정
         self.ksh_height_setting.setMinimumWidth(350)
-        self.ksh_height_setting.setMaximumWidth(400)
+        self.ksh_height_setting.setMaximumWidth(800)
 
         self.ksh_information = ksh_information() #부재 정보 입력
         self.ksh_information.setMinimumWidth(350)
-        self.ksh_information.setMaximumWidth(400)
+        self.ksh_information.setMaximumWidth(800)
 
         # 위젯 배치------------------------------------------------------------------------------------
         
