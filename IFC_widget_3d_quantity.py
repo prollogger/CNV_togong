@@ -197,9 +197,9 @@ class IFC_widget_3d_quantity(QWidget):
         self.root.addComponent(self.picker)
 
         # Finish GUI
-        layout = QHBoxLayout()
+        layout = QVBoxLayout()
         # Splitter
-        splitter = QSplitter(Qt.Horizontal)
+        splitter = QSplitter(Qt.Vertical)
         layout.addWidget(splitter)
         splitter.addWidget(self.container)
         # splitter.addWidget(self.view_quantity)
@@ -207,84 +207,84 @@ class IFC_widget_3d_quantity(QWidget):
         vbox = QVBoxLayout()
         # Series of buttons and check boxes in a horizontal layout
         buttons = QWidget()
-        hbox = QHBoxLayout()
-        hbox.setContentsMargins(0, 0, 0, 0)
-        buttons.setLayout(hbox)
+        vbox = QVBoxLayout()
+        vbox.setContentsMargins(0, 0, 0, 0)
+        buttons.setLayout(vbox)
         
         # 입력창_1 - 라벨
         self.label_1 = QLabel('공사코드 : ')
         self.label_1.setFont(font)
         self.label_1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed) 
-        hbox.addWidget(self.label_1)
+        vbox.addWidget(self.label_1)
         # 입력창_1 - 입력창
         self.entry_1 = QLineEdit(self)
         self.entry_1.setFont(font)
         self.entry_1.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)  # Expanding 가로 크기, Fixed 세로 크기
-        hbox.addWidget(self.entry_1)
+        vbox.addWidget(self.entry_1)
         
         # 공간 확보
         spacer = QSpacerItem(5,5, QSizePolicy.Fixed, QSizePolicy.Fixed)
-        hbox.addSpacerItem(spacer)   
+        vbox.addSpacerItem(spacer)   
           
         # 입력창_2 - 라벨
         self.label_2 = QLabel('공종 : ')
         self.label_2.setFont(font)
         self.label_2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed) 
-        hbox.addWidget(self.label_2)
+        vbox.addWidget(self.label_2)
         # 입력창_2 - 입력창
         self.entry_2 = QLineEdit(self)
         self.entry_2.setFont(font)
         self.entry_2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        hbox.addWidget(self.entry_2)
+        vbox.addWidget(self.entry_2)
         
         # 공간 확보
         spacer = QSpacerItem(5,5, QSizePolicy.Fixed, QSizePolicy.Fixed)
-        hbox.addSpacerItem(spacer)   
+        vbox.addSpacerItem(spacer)   
           
         # 입력창_3 - 라벨
         self.label_3 = QLabel('품명 : ')
         self.label_3.setFont(font)
         self.label_3.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed) 
-        hbox.addWidget(self.label_3)
+        vbox.addWidget(self.label_3)
         # 입력창_3 - 입력창
         self.entry_3 = QLineEdit(self)
         self.entry_3.setFont(font)
         self.entry_3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        hbox.addWidget(self.entry_3)
+        vbox.addWidget(self.entry_3)
         
         # 공간 확보
         spacer = QSpacerItem(5,5, QSizePolicy.Fixed, QSizePolicy.Fixed)
-        hbox.addSpacerItem(spacer)   
+        vbox.addSpacerItem(spacer)   
           
         # 입력창_4 - 라벨
         self.label_4 = QLabel('규격 : ')
         self.label_4.setFont(font)
         self.label_4.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed) 
-        hbox.addWidget(self.label_4)
+        vbox.addWidget(self.label_4)
         # 입력창_4 - 입력창
         self.entry_4 = QLineEdit(self)
         self.entry_4.setFont(font)
         self.entry_4.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        hbox.addWidget(self.entry_4)
+        vbox.addWidget(self.entry_4)
         
         # 공간 확보
         spacer = QSpacerItem(5,5, QSizePolicy.Fixed, QSizePolicy.Fixed)
-        hbox.addSpacerItem(spacer)   
+        vbox.addSpacerItem(spacer)   
           
         # 입력창_5 - 라벨
         self.label_5 = QLabel('단위 : ')
         self.label_5.setFont(font)
         self.label_5.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed) 
-        hbox.addWidget(self.label_5)
+        vbox.addWidget(self.label_5)
         # 입력창_5 - 입력창
         self.entry_5 = QLineEdit(self)
         self.entry_5.setFont(font)
         self.entry_5.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        hbox.addWidget(self.entry_5)
+        vbox.addWidget(self.entry_5)
         
         # 공간 확보
         spacer = QSpacerItem(5,5, QSizePolicy.Fixed, QSizePolicy.Fixed)
-        hbox.addSpacerItem(spacer)   
+        vbox.addSpacerItem(spacer)   
           
         # 버튼
         self.btn_add = QPushButton("추가")
@@ -292,7 +292,7 @@ class IFC_widget_3d_quantity(QWidget):
         self.btn_add.setFont(font)
         self.btn_add.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)  # Fixed 가로 크기, Fixed 세로 크기
         self.btn_add.pressed.connect(self.add_constr_item)
-        hbox.addWidget(self.btn_add)   
+        vbox.addWidget(self.btn_add)   
         
         # Add Scenegraph
         scenegraph = QWidget()

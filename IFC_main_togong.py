@@ -12,6 +12,7 @@ from IFCListingWidget import *
 from CustomDockWidget import *
 import cnv_methods as cnv
 
+
 class MainWindow(QMainWindow):
     def initUI(self):
         pass
@@ -120,6 +121,8 @@ class MainWindow(QMainWindow):
 
         self.view_takeoff = IFC_widget_takeoff() #수량추출 위젯
         self.view_takeoff.setMinimumSize(300,500)
+
+
 
         # /위젯 생성-------------------------------------------------------------------------------------
 
