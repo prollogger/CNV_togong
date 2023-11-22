@@ -21,7 +21,7 @@ class CustomDockWidget(QDockWidget):
 
         title_bar.setFont(font)
 
-        title_bar.setStyleSheet("background-color: #4582ec; color: #ffffff; border: 1px solid #4582ec; border-radius: 3px; min-height: 35px; max-height: 35;")
+        title_bar.setStyleSheet("background-color: #4582ec; color: #ffffff; border: 1px solid #4582ec; border-radius: 3px; min-height: 30px; max-height: 30;")
 
         # Set the created label as the title bar widget
         self.setTitleBarWidget(title_bar)

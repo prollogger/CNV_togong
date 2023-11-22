@@ -12,7 +12,7 @@ except Exception:
 
 import ifcopenshell
 from IFCCustomDelegate import *
-
+from ksh_style import *
 
 class ksh_height_setting(QWidget):
 
@@ -26,34 +26,84 @@ class ksh_height_setting(QWidget):
         # 수직 박스 레이아웃 생성
         vbox = QVBoxLayout()
         self.setLayout(vbox)
-        
-        # 공간 확보
-        spacer = QSpacerItem(0, 53, QSizePolicy.Fixed, QSizePolicy.Fixed)
-        vbox.addSpacerItem(spacer)   
 
         # 그룹박스 생성
         vbox.addWidget(self.Group1())
         vbox.addWidget(self.Group2())
 
     
-    #그룹박스 - 지형    
+   #그룹박스 - 스트러트 높이 설정 --------------------------------------------------------------   
     def Group1(self):
-        groupbox = QGroupBox('스트러트 높이 설정')
+        groupbox = CNV_GroupBox()
         
+        vbox = QVBoxLayout()
+        groupbox.setLayout(vbox)
+        
+        # 라벨 생성
+        lb1 = CNV_TitleLabel('스트러트 높이 설정')
+        vbox.addWidget(lb1)
+        
+        # 테이블 위젯 생성
+        tableWidget = CNV_TableWidget()
+        tableWidget.setRowCount(10)
+        tableWidget.setColumnCount(2)
+        
+        tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem())
+        tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("mm"))
+            
+        # 행의 헤더 숨기기
+        header = tableWidget.verticalHeader()
+        header.hide()       
+        
+        # 테이블 열 너비 조정
+        tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) 
 
-        
+        vbox.addWidget(tableWidget)
+
+        # 버튼 생성
+        btn = CNV_Button('추가')
+        vbox.addWidget(btn)
+        self.show()    
+
         return groupbox
     
     
-    #그룹박스 - 부재  
+    
+   #그룹박스 - 터파기 높이 설정 --------------------------------------------------------------   
     def Group2(self):
-        groupbox = QGroupBox('터파기 높이 설정')
-
+        groupbox = CNV_GroupBox()
+        
+        vbox = QVBoxLayout()
+        groupbox.setLayout(vbox)
+        
+        # 라벨 생성
+        lb1 = CNV_TitleLabel('터파기 높이 설정')
+        vbox.addWidget(lb1)
+        
+        # 테이블 위젯 생성
+        tableWidget = CNV_TableWidget()
+        tableWidget.setRowCount(10)
+        tableWidget.setColumnCount(2)
         
 
+        tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("layer"))
+        tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("mm"))
+
+            
+        # 행의 헤더 숨기기
+        header = tableWidget.verticalHeader()
+        header.hide()       
+        
+        # 테이블 열 너비 조정
+        tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) 
+               
+        vbox.addWidget(tableWidget)
+
+        
         return groupbox
-
-
+    
+    
+    
 
 if __name__ == '__main__':
     app = 0
