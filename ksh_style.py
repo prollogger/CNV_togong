@@ -3,7 +3,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 
-
+        
+# 타이틀라벨----------------------------------------------------------------------------------------------------------------------
+      
 class CNV_TitleLabel(QLabel):
     def __init__(self, title='', parent=None):
         super().__init__(title, parent)
@@ -16,6 +18,8 @@ class CNV_TitleLabel(QLabel):
         self.setMargin(5)  # 원하는 여백 크기 입력     
         self.setStyleSheet("color: #4582EC;")  # 여기에 원하는 색상 코드 입력
         
+# 그룹박스 ----------------------------------------------------------------------------------------------------------------------
+      
 class CNV_GroupBox(QGroupBox):
     def __init__(self, title='', parent=None):
         super().__init__(title, parent)
@@ -33,7 +37,8 @@ class CNV_GroupBox(QGroupBox):
                 background-color: #ffffff; /* 타이틀 배경색 */
             }
         """)
-        
+# 버튼 ----------------------------------------------------------------------------------------------------------------------
+      
 class CNV_Button(QPushButton):
     def __init__(self, text='', parent=None):
         super().__init__(text, parent)
@@ -52,10 +57,39 @@ class CNV_Button(QPushButton):
         """)
         self.setFixedHeight(25)    
         self.font = QFont()
-        self.font.setBold(False)       # 굵게 설정            
+        self.font.setBold(True)       # 굵게 설정            
         self.font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
         self.font.setPointSize(int(self.width() / 70))  # 20은 크기 조절을 위한 임의의 비율 상수
-
+        
+# 종료 버튼 ----------------------------------------------------------------------------------------------------------------------
+      
+class CNV_CloseButton(QPushButton):
+    def __init__(self, text='', parent=None):
+        super().__init__(text, parent)
+        self.setStyleSheet("""
+            QPushButton {
+                border: 1px solid #4582EC;
+                border-radius: 3px;
+                background-color: #ffffff;
+                color: #4582EC;               
+            }
+            QPushButton:hover {
+                background-color: #4582EC;
+                color: #ffffff;                
+                cursor: hand; /* 마우스 오버 시 커서 모양 변경 */                
+            }
+        """)
+        self.setFixedHeight(25)    
+        self.setFixedWidth(30)        
+        self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)         
+        self.font = QFont()
+        self.font.setBold(True)       # 굵게 설정            
+        self.font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        self.font.setPointSize(int(self.width() / 60))  # 20은 크기 조절을 위한 임의의 비율 상수
+                
+        
+# 콤보박스 ----------------------------------------------------------------------------------------------------------------------
+      
 class CNV_ComboBox(QComboBox):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -85,7 +119,9 @@ class CNV_ComboBox(QComboBox):
             }           
             """)        
    
-   
+        
+# 테이블(표) ----------------------------------------------------------------------------------------------------------------------
+      
 class CNV_TableWidget(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -104,6 +140,8 @@ class CNV_TableWidget(QTableWidget):
             }
         """)        
         
+# 탭뷰 ----------------------------------------------------------------------------------------------------------------------
+      
 class CNV_TabWidget(QTabWidget):
     def __init__(self, parent=None):
         super().__init__(parent)

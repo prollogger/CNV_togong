@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         menu_bar.addMenu(file_menu)
 
 
-        action_save = QAction("프로젝트 저장", self)
+        action_save = QAction("프로젝트 내보내기", self)
         action_save.setFont(self.font)
         action_save.triggered.connect(self.action_save_click)
         toolbar.addAction(action_save)
