@@ -9,15 +9,24 @@ from ksh_height_setting import *
 from ksh_information import *
 
 from IFCListingWidget import *
-from CustomDockWidget import *
 import cnv_methods as cnv
+
+from os import environ
 
 
 class MainWindow(QMainWindow):
 
+    def suppress_qt_warnings():
+        environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+        environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+        environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+        environ["QT_SCALE_FACTOR"] = "1"
+
+
     def __init__(self):
         super().__init__()
-        
+        self.setStyleSheet("background-color: #ffffff;")        
+        MainWindow.suppress_qt_warnings()
         
         # 위젯 생성-------------------------------------------------------------------------------------
         
@@ -41,27 +50,27 @@ class MainWindow(QMainWindow):
 
         # 위젯 배치------------------------------------------------------------------------------------
         
-        self.dock = CustomDockWidget('3D', self)
+        self.dock = CNV_DockWidget('3D', self)
         self.dock.setWidget(self.view_3d_quantity)
         self.dock.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock)
 
-        self.dock2 = CustomDockWidget('레이어 선택', self)
+        self.dock2 = CNV_DockWidget('레이어 선택', self)
         self.dock2.setWidget(self.view_layer_selection)
         self.dock2.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock2)
 
-        self.dock3 = CustomDockWidget('시추조사 결과 입력', self)
+        self.dock3 = CNV_DockWidget('시추조사 결과 입력', self)
         self.dock3.setWidget(self.ksh_report_result)
         self.dock3.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock3)
 
-        self.dock4 = CustomDockWidget('높이 설정', self)
+        self.dock4 = CNV_DockWidget('높이 설정', self)
         self.dock4.setWidget(self.ksh_height_setting)
         self.dock4.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock4)
 
-        self.dock5 = CustomDockWidget('부재 정보 입력', self)
+        self.dock5 = CNV_DockWidget('부재 정보 입력', self)
         self.dock5.setWidget(self.ksh_information)
         self.dock5.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock5)
@@ -90,6 +99,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
         # 체크박스 1
@@ -101,6 +111,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
         # 체크박스 2
@@ -112,6 +123,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
         # 체크박스 3
@@ -123,6 +135,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
         # 체크박스 4
@@ -134,6 +147,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
         # 체크박스 5
@@ -203,4 +217,5 @@ def main():
 
 
 if __name__ == "__main__":
+    
     main()

@@ -2,6 +2,36 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+class CNV_DockWidget(QDockWidget):
+    def __init__(self, title, parent=None):
+        super(CNV_DockWidget, self).__init__(title, parent)
+        self.init_ui()
+
+    def init_ui(self):
+        # Create a label widget to act as the title bar
+        title_bar = QLabel(self)
+        title_bar.setText(self.windowTitle())
+        title_bar.setAlignment(Qt.AlignCenter)
+
+        # QFont 객체 생성 및 스타일 설정
+        font = QFont()
+        font.setBold(True)       # 굵게 설정
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(int(self.width() / 11))  # 초기 크기 설정
+        title_bar.setFont(font)
+        title_bar.setStyleSheet("background-color: #2A384C; color: #ffffff; border: 1px solid #2A384C; border-radius: 3px; min-height: 30px; max-height: 30;")
+
+        # Set the created label as the title bar widget
+        self.setTitleBarWidget(title_bar)
+
+        # Add some content to the dock widget
+        tree_widget = QTreeWidget(self)
+        item = QTreeWidgetItem(["Item 1"])
+        
+        tree_widget.addTopLevelItem(item)
+        self.setWidget(tree_widget)
+
+
 # 스크롤바 영역 ---------------------------------------------------------------------------------------------------------------------
 
 class CNV_ScrollArea(QScrollArea):
@@ -13,6 +43,20 @@ class CNV_ScrollArea(QScrollArea):
                 border-radius: 3px;
                 margin-top: 5px; /* 위쪽 여백 */
             }
+            QScrollBar:vertical {
+                border: none;
+                background: #EAF1FD;
+                width: 14px;
+                border-radius: 0px;
+            }
+
+            /*  스크롤바(세로) */
+            QScrollBar::handle:vertical {	
+                background-color: #2A384C;
+                min-height: 30px;
+                border-radius: 3px;
+            }                
+                
         """)
 
 # 툴바 ---------------------------------------------------------------------------------------------------------------------
@@ -24,6 +68,7 @@ class CNV_ToolBar(QToolBar):
             QToolBar {
                 border: 1px solid #EAF1FD;
                 background-color: #EAF1FD;
+                margin-bottom: 10px; /* 툴바 아래 마진 설정 */
                 spacing: 5px;
             }
             QToolButton {
@@ -55,6 +100,7 @@ class CNV_CheckBox(QCheckBox):
                 font-family: "맑은고딕";
                 font-size: 15px;
                 color: #4582EC;
+                background-color: #EAF1FD;
             }
             QCheckBox::indicator {
                 width: 15px;
@@ -87,7 +133,7 @@ class CNV_TitleLabel(QLabel):
         self.setFont(font)
         #self.setAlignment(Qt.AlignCenter)      
         self.setMargin(5)  # 원하는 여백 크기 입력     
-        self.setStyleSheet("color: #4582EC;")  # 여기에 원하는 색상 코드 입력
+        self.setStyleSheet("color: #4582EC; background-color: transparent;")  # 여기에 원하는 색상 코드 입력
     
         
 # 그룹박스 ----------------------------------------------------------------------------------------------------------------------
@@ -100,7 +146,7 @@ class CNV_GroupBox(QGroupBox):
                 border: 1px solid #4582EC; /* 테두리 스타일 및 색상 */
                 border-radius: 3px;
                 margin-top: 5px; /* 위쪽 여백 */
-                background-color: #ffffff;
+                background-color: #EAF1FD;
             }
         """)
         
@@ -234,9 +280,22 @@ class CNV_TableWidget(QTableWidget):
                 padding-top: 3px;
                 padding-bottom: 3px;
                 font-family: '맑은고딕'; /* 폰트 종류 설정 */
-                    
-            
             }
+                        
+            QScrollBar:vertical {
+                border: none;
+                background: #EAF1FD;
+                width: 14px;
+                border-radius: 0px;
+            }
+
+            /*  스크롤바(세로) */
+            QScrollBar::handle:vertical {	
+                background-color: #2A384C;
+                min-height: 30px;
+                border-radius: 3px;
+            }
+            
         """)       
         
     def updateFont(self):
