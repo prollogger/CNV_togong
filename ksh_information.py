@@ -59,7 +59,7 @@ class ksh_information(QWidget):
         table.setColumnCount(2)
 
         table.setHorizontalHeaderItem(0, QTableWidgetItem("부재"))
-        table.setHorizontalHeaderItem(1, QTableWidgetItem("레이어선택"))
+        table.setHorizontalHeaderItem(1, QTableWidgetItem("사이즈"))
 
         # 첫 번째 열에 콤보박스 추가
         for i in range(table.rowCount()):
@@ -115,7 +115,7 @@ class ksh_information(QWidget):
         table.setColumnCount(2)
 
         table.setHorizontalHeaderItem(0, QTableWidgetItem("부재"))
-        table.setHorizontalHeaderItem(1, QTableWidgetItem("레이어선택"))
+        table.setHorizontalHeaderItem(1, QTableWidgetItem("사이즈"))
 
         # 첫 번째 열에 콤보박스 추가
         for i in range(table.rowCount()):
@@ -171,7 +171,7 @@ class ksh_information(QWidget):
         table.setColumnCount(2)
 
         table.setHorizontalHeaderItem(0, QTableWidgetItem("부재"))
-        table.setHorizontalHeaderItem(1, QTableWidgetItem("레이어선택"))
+        table.setHorizontalHeaderItem(1, QTableWidgetItem("사이즈"))
 
         # 첫 번째 열에 콤보박스 추가
         for i in range(table.rowCount()):

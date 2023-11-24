@@ -86,7 +86,7 @@ class ksh_height_setting(QWidget):
         tableWidget.setColumnCount(2)
         
 
-        tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("layer"))
+        tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("레이어"))
         tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("mm"))
 
             
