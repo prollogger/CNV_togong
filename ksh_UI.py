@@ -87,26 +87,56 @@ class MainWindow(QMainWindow):
         
         # 체크박스(위젯가시성) -----------------------------------------------------------------------
         
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 1
         self.check_1 = CNV_CheckBox("3D View")
         self.check_1.stateChanged.connect(self.toggle_1)
         self.check_1.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
         toolbar.addWidget(self.check_1)
         
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 2
         self.check_2 = CNV_CheckBox("레이어 선택")
         self.check_2.stateChanged.connect(self.toggle_2)
         self.check_2.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
         toolbar.addWidget(self.check_2)
         
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 3
         self.check_3 = CNV_CheckBox("시추조사 결과 입력")
         self.check_3.stateChanged.connect(self.toggle_3)
         self.check_3.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
         toolbar.addWidget(self.check_3)
         
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 4
         self.check_4 = CNV_CheckBox("높이 설정")
         self.check_4.stateChanged.connect(self.toggle_4)
         self.check_4.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
         toolbar.addWidget(self.check_4)
         
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 5
         self.check_5 = CNV_CheckBox("부재 정보 입력")
         self.check_5.stateChanged.connect(self.toggle_5)
         self.check_5.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정

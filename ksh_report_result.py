@@ -40,22 +40,24 @@ class ksh_report_result(QWidget):
 
 
         # 스크롤 가능한 영역 생성
-        scroll_area = QScrollArea()
+        scroll_area = CNV_ScrollArea()
         scroll_area.setWidgetResizable(True)  # 스크롤 영역 크기 자동 조절 설정
 
         # 그룹박스들을 담을 위젯 생성
         self.scroll_content = QWidget()
-        self.scroll_content.setLayout(QVBoxLayout())  # 수직 레이아웃 설정
-
+        layout = QVBoxLayout(self.scroll_content)  # 수직 레이아웃 설정
+        layout.setAlignment(Qt.AlignTop)  # 위쪽 정렬
+        
+        
         # 그룹박스들을 스크롤 가능한 영역에 추가
         scroll_area.setWidget(self.scroll_content)
         self.vbox.addWidget(scroll_area)
 
         # 그룹박스 생성
-        self.scroll_content.layout().addWidget(self.Group1())
-        self.scroll_content.layout().addWidget(self.Group2())
-        self.scroll_content.layout().addWidget(self.Group3())
-        self.scroll_content.layout().addWidget(self.Group4())
+        layout.addWidget(self.Group1())
+        layout.addWidget(self.Group2())
+        layout.addWidget(self.Group3())
+        layout.addWidget(self.Group4())
     
 
     #그룹박스 - 보링점1 --------------------------------------------------------------   

@@ -2,8 +2,21 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+# 스크롤바 영역 ---------------------------------------------------------------------------------------------------------------------
+
+class CNV_ScrollArea(QScrollArea):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setStyleSheet("""
+            QScrollArea {
+                border: 1px solid #4582EC; /* 테두리 스타일 및 색상 */
+                border-radius: 3px;
+                margin-top: 5px; /* 위쪽 여백 */
+            }
+        """)
 
 # 툴바 ---------------------------------------------------------------------------------------------------------------------
+
 class CNV_ToolBar(QToolBar):
     def __init__(self, title, parent=None):
         super().__init__(title, parent)
@@ -20,7 +33,7 @@ class CNV_ToolBar(QToolBar):
                 background-color: #ffffff;
                 padding: 5px;
                 font-family: "맑은고딕"; /* 원하는 폰트 패밀리로 변경 */
-                font-size: 25px; /* 툴버튼의 텍스트 크기 조절 */        
+                font-size: 15px; /* 툴버튼의 텍스트 크기 조절 */        
                 color: #4582EC;               
             }
             QToolButton:hover {
@@ -28,11 +41,10 @@ class CNV_ToolBar(QToolBar):
                 color: #ffffff;                
             }
         """)      
-        
+
         
         
 # 체크박스 ---------------------------------------------------------------------------------------------------------------------
-
 
 class CNV_CheckBox(QCheckBox):
     def __init__(self, text, parent=None):
@@ -41,12 +53,12 @@ class CNV_CheckBox(QCheckBox):
             QCheckBox {
                 spacing: 10px;
                 font-family: "맑은고딕";
-                font-size: 25px;
+                font-size: 15px;
                 color: #4582EC;
             }
             QCheckBox::indicator {
-                width: 30px;
-                height: 30px;
+                width: 15px;
+                height: 15px;
             }
             QCheckBox::indicator:unchecked {
                 border: 1px solid #ccc;
@@ -76,6 +88,7 @@ class CNV_TitleLabel(QLabel):
         #self.setAlignment(Qt.AlignCenter)      
         self.setMargin(5)  # 원하는 여백 크기 입력     
         self.setStyleSheet("color: #4582EC;")  # 여기에 원하는 색상 코드 입력
+    
         
 # 그룹박스 ----------------------------------------------------------------------------------------------------------------------
       
@@ -86,19 +99,10 @@ class CNV_GroupBox(QGroupBox):
             QGroupBox {
                 border: 1px solid #4582EC; /* 테두리 스타일 및 색상 */
                 border-radius: 3px;
-                margin-top: 10px; /* 위쪽 여백 */
+                margin-top: 5px; /* 위쪽 여백 */
                 background-color: #ffffff;
             }
-            QGroupBox::title {
-                subcontrol-origin: margin;
-                subcontrol-position: top center;
-                padding: 0 3px; /* 타이틀 여백 */
-                background-color: #ffffff; /* 타이틀 배경색 */
-            }
         """)
-        
-        
-        
         
 # 버튼 ----------------------------------------------------------------------------------------------------------------------
       
@@ -109,7 +113,7 @@ class CNV_Button(QPushButton):
             QPushButton {
                 border: 1px solid #4582EC;
                 border-radius: 3px;
-                padding: 10px;
+                padding: 5px;
                 background-color: #ffffff;
                 color: #4582EC;               
             }
@@ -126,12 +130,13 @@ class CNV_Button(QPushButton):
         
     def updateFont(self):
         font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 60))  # 폰트 크기 동적 조정
+        font.setPointSize(int(self.width() / 40))  # 폰트 크기 동적 조정
         self.setFont(font)  # 업데이트된 폰트 설정
 
     def resizeEvent(self, event):
         self.updateFont()  # 위젯 크기가 변경될 때마다 폰트 크기 업데이트
         super().resizeEvent(event)     
+   
         
 # 종료 버튼 ----------------------------------------------------------------------------------------------------------------------
       
@@ -202,7 +207,7 @@ class CNV_ComboBox(QComboBox):
         
     def updateFont(self):
         font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 30))  # 폰트 크기 동적 조정
+        font.setPointSize(int(self.width() / 20))  # 폰트 크기 동적 조정
         self.setFont(font)  # 업데이트된 폰트 설정
 
     def resizeEvent(self, event):
@@ -273,7 +278,7 @@ class CNV_TabWidget(QTabWidget):
         """)     
     def updateFont(self):
         font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 60))  # 폰트 크기 동적 조정
+        font.setPointSize(int(self.width() / 40))  # 폰트 크기 동적 조정
         self.setFont(font)  # 업데이트된 폰트 설정
 
     def resizeEvent(self, event):
