@@ -9,50 +9,24 @@ from ksh_height_setting import *
 from ksh_information import *
 
 from IFCListingWidget import *
-from CustomDockWidget import *
 import cnv_methods as cnv
+
+from os import environ
 
 
 class MainWindow(QMainWindow):
 
+    def suppress_qt_warnings():
+        environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+        environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+        environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+        environ["QT_SCALE_FACTOR"] = "1"
+
+
     def __init__(self):
         super().__init__()
-        
-       
-        # 기본 폰트---------------------------------------------------------------------------------------
-        self.font = QFont()
-        self.font.setBold(False)       # 굵게 설정            
-        self.font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        self.font.setPointSize(int(self.width() / 70))  # 20은 크기 조절을 위한 임의의 비율 상수
-
-        
-        # 프로젝트 저장 탭 -------------------------------------------------------------------------------
-        self.setAcceptDrops(True) 
-        self.settings = QSettings()
-
-
-        # menu, actions and toolbar
-        self.setUnifiedTitleAndToolBarOnMac(True)
-        toolbar = QToolBar("My main toolbar")
-        toolbar.setFloatable(False)
-        toolbar.setFont(self.font)
-        toolbar.setMovable(False)
-        self.addToolBar(toolbar)
-        menu_bar = self.menuBar()
-        file_menu = QMenu("&File", self)
-        menu_bar.addMenu(file_menu)
-
-
-        action_save = QAction("프로젝트 저장", self)
-        action_save.setFont(self.font)
-        action_save.triggered.connect(self.action_save_click)
-        toolbar.addAction(action_save)
-        file_menu.addAction(action_save)        
-        
-
-
-
-        
+        self.setStyleSheet("background-color: #ffffff;")        
+        MainWindow.suppress_qt_warnings()
         
         # 위젯 생성-------------------------------------------------------------------------------------
         
@@ -76,32 +50,140 @@ class MainWindow(QMainWindow):
 
         # 위젯 배치------------------------------------------------------------------------------------
         
-        self.dock = CustomDockWidget('3D', self)
+        self.dock = CNV_DockWidget('3D', self)
         self.dock.setWidget(self.view_3d_quantity)
         self.dock.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock)
 
-        self.dock2 = CustomDockWidget('레이어 선택', self)
+        self.dock2 = CNV_DockWidget('레이어 선택', self)
         self.dock2.setWidget(self.view_layer_selection)
         self.dock2.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock2)
 
-        self.dock3 = CustomDockWidget('시추조사 결과 입력', self)
+        self.dock3 = CNV_DockWidget('시추조사 결과 입력', self)
         self.dock3.setWidget(self.ksh_report_result)
         self.dock3.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock3)
 
-        self.dock4 = CustomDockWidget('높이 설정', self)
+        self.dock4 = CNV_DockWidget('높이 설정', self)
         self.dock4.setWidget(self.ksh_height_setting)
         self.dock4.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock4)
 
-        self.dock5 = CustomDockWidget('부재 정보 입력', self)
+        self.dock5 = CNV_DockWidget('부재 정보 입력', self)
         self.dock5.setWidget(self.ksh_information)
         self.dock5.setFloating(False)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.dock5)
         
         
+        # 프로젝트 저장 탭(툴바 생성) -------------------------------------------------------------------------------
+        self.setUnifiedTitleAndToolBarOnMac(True)
+        toolbar = CNV_ToolBar("My main toolbar")
+        toolbar.setFloatable(False)
+        toolbar.setMovable(False)
+        self.addToolBar(toolbar)
+        
+        # 메뉴바
+        #menu_bar = self.menuBar()
+        #file_menu = QMenu("&File", self)
+        #menu_bar.addMenu(file_menu)
+
+        # 프로젝트 내보내기 --------------------------------------------------------------------------
+        action_save = QAction("프로젝트 내보내기", self)
+        action_save.triggered.connect(self.action_save_click)
+        toolbar.addAction(action_save)        
+        
+        
+        # 체크박스(위젯가시성) -----------------------------------------------------------------------
+        
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 1
+        self.check_1 = CNV_CheckBox("3D View")
+        self.check_1.stateChanged.connect(self.toggle_1)
+        self.check_1.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
+        toolbar.addWidget(self.check_1)
+        
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 2
+        self.check_2 = CNV_CheckBox("레이어 선택")
+        self.check_2.stateChanged.connect(self.toggle_2)
+        self.check_2.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
+        toolbar.addWidget(self.check_2)
+        
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 3
+        self.check_3 = CNV_CheckBox("시추조사 결과 입력")
+        self.check_3.stateChanged.connect(self.toggle_3)
+        self.check_3.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
+        toolbar.addWidget(self.check_3)
+        
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 4
+        self.check_4 = CNV_CheckBox("높이 설정")
+        self.check_4.stateChanged.connect(self.toggle_4)
+        self.check_4.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
+        toolbar.addWidget(self.check_4)
+        
+        # 공간 확보
+        spacer_widget = QWidget()
+        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
+        toolbar.addWidget(spacer_widget)        
+        
+        # 체크박스 5
+        self.check_5 = CNV_CheckBox("부재 정보 입력")
+        self.check_5.stateChanged.connect(self.toggle_5)
+        self.check_5.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
+        toolbar.addWidget(self.check_5)
+        
+        
+        #메뉴바
+        #file_menu.addAction(action_save)        
+        
+        
+        
+    # 체크박스 상태 변화 함수 정의--------------------------------------------------------------
+    
+    def toggle_1(self, state):
+        # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
+        self.dock.setVisible(state == Qt.Checked)        
+            
+    def toggle_2(self, state):
+        # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
+        self.dock2.setVisible(state == Qt.Checked)        
+    
+    def toggle_3(self, state):
+        # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
+        self.dock3.setVisible(state == Qt.Checked)        
+    
+    def toggle_4(self, state):
+        # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
+        self.dock4.setVisible(state == Qt.Checked)        
+    
+    def toggle_5(self, state):
+        # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
+        self.dock5.setVisible(state == Qt.Checked)        
+
         
         
     # 프로젝트 저장 이벤트-------------------------------------------------------------------------------
@@ -135,4 +217,5 @@ def main():
 
 
 if __name__ == "__main__":
+    
     main()

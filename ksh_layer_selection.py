@@ -25,10 +25,10 @@ class ksh_layer_selection(QWidget):
         
        
         # 기본 폰트
-        self.font = QFont()
-        self.font.setBold(False)       # 굵게 설정            
-        self.font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        self.font.setPointSize(int(self.width() / 70))  # 20은 크기 조절을 위한 임의의 비율 상수
+        #self.font = QFont()
+        #self.font.setBold(False)       # 굵게 설정            
+        #self.font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        #self.font.setPointSize(int(self.width() / 70))  # 20은 크기 조절을 위한 임의의 비율 상수
 
         # 수직 박스 레이아웃 생성
         vbox = QVBoxLayout()
@@ -61,13 +61,11 @@ class ksh_layer_selection(QWidget):
 
         # 탭 위젯 생성
         tabs = CNV_TabWidget()
-        tabs.setFont(self.font)
         tabs.addTab(QWidget(), '현황')
         tabs.addTab(QWidget(), '터파기')  # 빈 탭 추가
         
         # 테이블 위젯 생성
         table = CNV_TableWidget()
-        table.setFont(self.font)
         table.setRowCount(8)
         table.setColumnCount(2)
 
@@ -78,7 +76,6 @@ class ksh_layer_selection(QWidget):
         for i in range(table.rowCount()):
             combo = CNV_ComboBox()
             combo.addItems(["Option 1", "Option 2", "Option 3"])
-            combo.setFont(self.font)
             table.setCellWidget(i, 1, combo)
             
         # 행의 헤더 숨기기

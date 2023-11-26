@@ -2,9 +2,9 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDockWidget, QLabel, QVBo
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
 
-class CustomDockWidget(QDockWidget):
+class CNV_DockWidget(QDockWidget):
     def __init__(self, title, parent=None):
-        super(CustomDockWidget, self).__init__(title, parent)
+        super(CNV_DockWidget, self).__init__(title, parent)
         self.init_ui()
 
     def init_ui(self):
