@@ -118,7 +118,7 @@ class CNV_CheckBox(QCheckBox):
             QCheckBox::indicator:checked {
                 border: 1px solid #4582EC;
                 background-color: #ffffff;
-                image: url("C:/Users/thdgm/OneDrive/바탕 화면/CNV_togong_cnvksh/CNV_togong/image/check-mark.png");                
+                image: url("./image/check-mark.png");                
             }
             QCheckBox::indicator:unchecked:hover {
                 border: 1px solid #4582EC;
@@ -139,7 +139,7 @@ class CNV_TitleLabel(QLabel):
         font = QFont()
         font.setBold(True)       # 굵게 설정            
         font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        font.setPointSize(12)  # 20은 크기 조절을 위한 임의의 비율 상수
+        font.setPointSize(13)  # 20은 크기 조절을 위한 임의의 비율 상수
         self.setFont(font)
         #self.setAlignment(Qt.AlignCenter)      
         self.setMargin(5)  # 원하는 여백 크기 입력     
@@ -234,7 +234,7 @@ class CNV_ComboBox(QComboBox):
                 background: #EAF1FD;
             }
             QComboBox::down-arrow {
-                image: url("C:/Users/thdgm/OneDrive/바탕 화면/CNV_togong_cnvksh/CNV_togong/image/down-mark.png"); /* 화살표 이미지 경로 지정 */
+                image: url("./image/down-mark.png"); /* 화살표 이미지 경로 지정 */
                 width: 7px; /* 이미지 너비 */
                 height: 7px; /* 이미지 높이 */
             } 
