@@ -2,6 +2,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+
+
+# 위젯
 class CNV_DockWidget(QDockWidget):
     def __init__(self, title, parent=None):
         super(CNV_DockWidget, self).__init__(title, parent)
@@ -15,10 +18,10 @@ class CNV_DockWidget(QDockWidget):
 
         # QFont 객체 생성 및 스타일 설정
         font = QFont()
-        font.setBold(True)       # 굵게 설정
+        font.setBold(True)       # 굵게 설정            
         font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        font.setPointSize(int(self.width() / 11))  # 초기 크기 설정
-        title_bar.setFont(font)
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
         title_bar.setStyleSheet("background-color: #2A384C; color: #ffffff; border: 1px solid #2A384C; border-radius: 3px; min-height: 30px; max-height: 30;")
 
         # Set the created label as the title bar widget
@@ -77,8 +80,6 @@ class CNV_ToolBar(QToolBar):
                 margin: 10px; /* 여백 */
                 background-color: #ffffff;
                 padding: 5px;
-                font-family: "맑은고딕"; /* 원하는 폰트 패밀리로 변경 */
-                font-size: 15px; /* 툴버튼의 텍스트 크기 조절 */        
                 color: #4582EC;               
             }
             QToolButton:hover {
@@ -86,6 +87,12 @@ class CNV_ToolBar(QToolBar):
                 color: #ffffff;                
             }
         """)      
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
+
 
         
         
@@ -97,8 +104,6 @@ class CNV_CheckBox(QCheckBox):
         self.setStyleSheet("""
             QCheckBox {
                 spacing: 10px;
-                font-family: "맑은고딕";
-                font-size: 15px;
                 color: #4582EC;
                 background-color: #EAF1FD;
             }
@@ -118,7 +123,12 @@ class CNV_CheckBox(QCheckBox):
             QCheckBox::indicator:unchecked:hover {
                 border: 1px solid #4582EC;
             }
-        """)        
+        """)       
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
         
         
 # 타이틀라벨----------------------------------------------------------------------------------------------------------------------
@@ -129,7 +139,7 @@ class CNV_TitleLabel(QLabel):
         font = QFont()
         font.setBold(True)       # 굵게 설정            
         font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        font.setPointSize(int(self.width() / 60))  # 20은 크기 조절을 위한 임의의 비율 상수
+        font.setPointSize(12)  # 20은 크기 조절을 위한 임의의 비율 상수
         self.setFont(font)
         #self.setAlignment(Qt.AlignCenter)      
         self.setMargin(5)  # 원하는 여백 크기 입력     
@@ -169,19 +179,11 @@ class CNV_Button(QPushButton):
                 cursor: hand; /* 마우스 오버 시 커서 모양 변경 */                
             }
         """)
-        self.font_style = QFont()  # 폰트 스타일을 인스턴스 변수로 설정합니다.
-        self.font_style.setBold(True)       # 굵게 설정            
-        self.font_style.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        self.updateFont()
-        
-    def updateFont(self):
-        font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 40))  # 폰트 크기 동적 조정
-        self.setFont(font)  # 업데이트된 폰트 설정
-
-    def resizeEvent(self, event):
-        self.updateFont()  # 위젯 크기가 변경될 때마다 폰트 크기 업데이트
-        super().resizeEvent(event)     
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
    
         
 # 종료 버튼 ----------------------------------------------------------------------------------------------------------------------
@@ -204,19 +206,12 @@ class CNV_CloseButton(QPushButton):
             }
         """)
         self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)         
-        self.font_style = QFont()  # 폰트 스타일을 인스턴스 변수로 설정합니다.
-        self.font_style.setBold(True)       # 굵게 설정            
-        self.font_style.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
-        self.updateFont()
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
         
-    def updateFont(self):
-        font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 60))  # 폰트 크기 동적 조정
-        self.setFont(font)  # 업데이트된 폰트 설정
-
-    def resizeEvent(self, event):
-        self.updateFont()  # 위젯 크기가 변경될 때마다 폰트 크기 업데이트
-        super().resizeEvent(event)     
         
                 
         
@@ -233,7 +228,6 @@ class CNV_ComboBox(QComboBox):
                 min-width: 5em;
                 background: #ffffff;
                 selection-background-color: #4582EC;
-                font-family: '맑은고딕'; /* 폰트 종류 설정 */                
             }
             QComboBox:hover {
                 border: 2px solid #4582EC;
@@ -250,15 +244,12 @@ class CNV_ComboBox(QComboBox):
                 box-shadow: none;
             }           
             """)      
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
         
-    def updateFont(self):
-        font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 20))  # 폰트 크기 동적 조정
-        self.setFont(font)  # 업데이트된 폰트 설정
-
-    def resizeEvent(self, event):
-        self.updateFont()  # 위젯 크기가 변경될 때마다 폰트 크기 업데이트
-        super().resizeEvent(event)        
         
 # 테이블(표) ----------------------------------------------------------------------------------------------------------------------
       
@@ -271,7 +262,6 @@ class CNV_TableWidget(QTableWidget):
                 border-radius: 1px;
                 background-color: #ffffff;
                 gridline-color: #D5E3FB; /* 그리드 라인 색상 */
-                font-family: '맑은고딕'; /* 폰트 종류 설정 */
                 
             }
             QHeaderView::section {
@@ -297,15 +287,11 @@ class CNV_TableWidget(QTableWidget):
             }
             
         """)       
-        
-    def updateFont(self):
-        font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 60))  # 폰트 크기 동적 조정
-        self.setFont(font)  # 업데이트된 폰트 설정
-
-    def resizeEvent(self, event):
-        self.updateFont()  # 위젯 크기가 변경될 때마다 폰트 크기 업데이트
-        super().resizeEvent(event)
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
         
 # 탭뷰 ----------------------------------------------------------------------------------------------------------------------
       
@@ -325,7 +311,6 @@ class CNV_TabWidget(QTabWidget):
                 border-bottom: none; /* 선택된 탭의 하단 테두리 색상 */
                 padding: 8px 12px; /* 탭 내부 여백 */
                 color: #000000; /* 탭 텍스트 색상 */
-                font-family: '맑은고딕'; /* 폰트 종류 설정 */
             }
             QTabBar::tab:selected {
                 border: 1px solid #4582EC;
@@ -335,14 +320,12 @@ class CNV_TabWidget(QTabWidget):
                 font-family: '맑은고딕'; /* 폰트 종류 설정 */
             }
         """)     
-    def updateFont(self):
-        font = self.font()  # 현재 폰트 가져오기
-        font.setPointSize(int(self.width() / 40))  # 폰트 크기 동적 조정
-        self.setFont(font)  # 업데이트된 폰트 설정
-
-    def resizeEvent(self, event):
-        self.updateFont()  # 위젯 크기가 변경될 때마다 폰트 크기 업데이트
-        super().resizeEvent(event)        
+        font = QFont()
+        font.setBold(False)       # 굵게 설정            
+        font.setFamily('맑은고딕')  # 원하는 폰트 패밀리로 변경
+        font.setPointSize(10)  # 20은 크기 조절을 위한 임의의 비율 상수
+        self.setFont(font)
+        
 
 def main():
     app = QApplication([])

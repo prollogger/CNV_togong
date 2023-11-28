@@ -2,7 +2,6 @@
 import os.path
 from IFCCustomDelegate import *
 
-from IFC_widget_3d_quantity import *
 from ksh_layer_selection import *
 from ksh_report_result import *
 from ksh_height_setting import *
@@ -16,6 +15,7 @@ from os import environ
 
 class MainWindow(QMainWindow):
 
+    #해상도별 글자크기 강제 고정
     def suppress_qt_warnings():
         environ["QT_DEVICE_PIXEL_RATIO"] = "0"
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
@@ -26,34 +26,23 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setStyleSheet("background-color: #ffffff;")        
-        MainWindow.suppress_qt_warnings()
         
         # 위젯 생성-------------------------------------------------------------------------------------
         
-        self.view_3d_quantity = IFC_widget_3d_quantity() #메인위젯
         
         self.view_layer_selection = ksh_layer_selection() #레이어 지정
         self.view_layer_selection.setMinimumWidth(350)
-        self.view_layer_selection.setMaximumWidth(800)
 
         self.ksh_report_result = ksh_report_result() #보링점
         self.ksh_report_result.setMinimumWidth(350)
-        self.ksh_report_result.setMaximumWidth(800)
 
         self.ksh_height_setting = ksh_height_setting() #높이 설정
         self.ksh_height_setting.setMinimumWidth(350)
-        self.ksh_height_setting.setMaximumWidth(800)
 
         self.ksh_information = ksh_information() #부재 정보 입력
         self.ksh_information.setMinimumWidth(350)
-        self.ksh_information.setMaximumWidth(800)
 
         # 위젯 배치------------------------------------------------------------------------------------
-        
-        self.dock = CNV_DockWidget('3D', self)
-        self.dock.setWidget(self.view_3d_quantity)
-        self.dock.setFloating(False)
-        self.addDockWidget(Qt.BottomDockWidgetArea, self.dock)
 
         self.dock2 = CNV_DockWidget('레이어 선택', self)
         self.dock2.setWidget(self.view_layer_selection)
@@ -102,18 +91,6 @@ class MainWindow(QMainWindow):
         spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
-        # 체크박스 1
-        self.check_1 = CNV_CheckBox("3D View")
-        self.check_1.stateChanged.connect(self.toggle_1)
-        self.check_1.setChecked(True)  # 체크박스 초기에 선택된 상태로 설정
-        toolbar.addWidget(self.check_1)
-        
-        # 공간 확보
-        spacer_widget = QWidget()
-        spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
-        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
-        toolbar.addWidget(spacer_widget)        
-        
         # 체크박스 2
         self.check_2 = CNV_CheckBox("레이어 선택")
         self.check_2.stateChanged.connect(self.toggle_2)
@@ -135,6 +112,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
+        
         spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
         toolbar.addWidget(spacer_widget)        
         
@@ -163,10 +141,6 @@ class MainWindow(QMainWindow):
         
         
     # 체크박스 상태 변화 함수 정의--------------------------------------------------------------
-    
-    def toggle_1(self, state):
-        # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
-        self.dock.setVisible(state == Qt.Checked)        
             
     def toggle_2(self, state):
         # 체크박스 상태에 따라 view_3d_quantity 위젯의 가시성을 설정
@@ -217,5 +191,5 @@ def main():
 
 
 if __name__ == "__main__":
-    
+    MainWindow.suppress_qt_warnings()
     main()
