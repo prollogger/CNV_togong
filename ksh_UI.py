@@ -12,7 +12,7 @@ import cnv_methods as cnv
 
 from os import environ
 
-
+##_
 class MainWindow(QMainWindow):
 
     #해상도별 글자크기 강제 고정
