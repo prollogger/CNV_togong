@@ -88,7 +88,7 @@ class MainWindow(QMainWindow):
         # 공간 확보
         spacer_widget = QWidget()
         spacer_widget.setFixedWidth(20)  # 너비 조절을 통해 간격 조정
-        spacer_widget.setStyleSheet("background-color: #EAF1FD; margin-bottom: 10px;")      
+        spacer_widget.setStyleSheet("background-color: #EAF1FD;")      
         toolbar.addWidget(spacer_widget)        
         
         # 체크박스 2
