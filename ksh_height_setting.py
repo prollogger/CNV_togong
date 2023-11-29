@@ -63,11 +63,13 @@ class ksh_height_setting(QWidget):
         
         # 버튼들을 담을 위젯 생성
         button_widget = QWidget()  
+        button_widget.setStyleSheet("background-color: #EAF1FD; font-size:15;")
         button_layout = QHBoxLayout()
         
         # 버튼 생성
         add_btn = CNV_Button('+')
         add_btn.clicked.connect(self.addRow)
+        
         button_layout.addWidget(add_btn)
         
         delete_btn = CNV_Button('-')
